@@ -1,3 +1,4 @@
+#此脚本为通过获取必应的壁纸，然后通过替换完成每天群晖壁纸的替换
 #如需收集每日美图去掉下面注释设置保存文件夹路径
 #savepath="/volume1/wallpaper"
 #在FileStation里面右键文件夹属性可以看到路径
@@ -28,5 +29,7 @@ echo "login_welcome_msg=\"$word\"">>/etc/synoinfo.conf
 if (echo $savepath|grep -q '/') then
 cp -f $tmpfile $savepath/$date@$title-$word.jpg
 fi
+#定义保存每天图片的路径
 cp -f $tmpfile /volume1/Documents/wallpaper/
+#删除临时文件，否则每天会保存临时文件造成系统冗余
 rm -rf /tmp/*_bing.jpg
